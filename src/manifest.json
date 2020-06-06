@@ -29,5 +29,5 @@
     }
   },
   "browser_action": {},
-  "permissions": ["tabs","https://meet.google.com/*","https://*.meet.sandbox.google.com/*"]
+  "permissions": ["tabs"]
 }
