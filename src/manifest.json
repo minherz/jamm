@@ -3,7 +3,7 @@
   "name": "Just Another Meet Mute",
   "description": "Mute microphone and disable video in all active Google Meet sessions in one click",
   "author": "minherz",
-  "version": "0.1",
+  "version": "0.2",
   "icons": {
     "16": "images/jamm2_16.png",
     "48": "images/jamm2_48.png",
@@ -16,18 +16,17 @@
   "content_scripts": [
     {
       "matches": ["https://meet.google.com/*","https://*.meet.sandbox.google.com/*"],
-      "js": ["js/meet_tabs.js"]
+      "js": ["js/meet_tab.js"]
     }
   ],
   "commands": {
-    "mute-all-meet-streams": {
+    "_execute_browser_action": {
       "suggested_key": {
-        "default": "Alt+Shift+D",
-        "mac": "Alt+Shift+D"
+        "default": "Alt+Shift+D"
       },
       "description": "Mutes microphone and disables video in all active Google Meet sessions."
     }
   },
   "browser_action": {},
-  "permissions": ["tabs","https://meet.google.com/*","https://*.meet.sandbox.google.com/*"]
+  "permissions": ["tabs"]
 }
