@@ -19,14 +19,6 @@ chrome.browserAction.onClicked.addListener(function (_) {
   muteAllMeetSessions()
 })
 
-// Registers a callback function which will be called when the application shortcut is pressed.
-chrome.commands.onCommand.addListener(function(command) {
-    if (command == 'toggle-pin-tab') {
-      muteAllMeetSessions()
-    }
-})
-
-
 // Finds all tabs that run active Google Meet sessions and sends a message to mute mic and disable camera to each.
 function muteAllMeetSessions() {
   chrome.tabs.query({url: ["https://meet.google.com/*","https://*.meet.sandbox.google.com/*"]}, function (tabs) {

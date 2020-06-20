@@ -20,10 +20,9 @@
     }
   ],
   "commands": {
-    "mute-all-meet-streams": {
+    "_execute_browser_action": {
       "suggested_key": {
-        "default": "Alt+Shift+D",
-        "mac": "Alt+Shift+D"
+        "default": "Alt+Shift+D"
       },
       "description": "Mutes microphone and disables video in all active Google Meet sessions."
     }
