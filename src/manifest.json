@@ -3,7 +3,7 @@
   "name": "Just Another Meet Mute",
   "description": "Mute microphone and disable video in all active Google Meet sessions in one click",
   "author": "minherz",
-  "version": "0.2",
+  "version": "0.3",
   "icons": {
     "16": "images/jamm2_16.png",
     "48": "images/jamm2_48.png",

@@ -17,6 +17,7 @@
 // set constants
 const isMacOS = navigator.platform.indexOf("Mac") != -1;
 const controlKeyName = isMacOS ? "cmd" : "ctrl";
+let pushedToTalk = false;
 
 // register a callback function which will be called when the mute message is sent to the tab
 chrome.runtime.onMessage.addListener(function(msg, _, sendResponse) {
@@ -31,6 +32,36 @@ chrome.runtime.onMessage.addListener(function(msg, _, sendResponse) {
     toggleVideo();
   }
 })
+
+// register a callback functions to handle push-to-talk
+document.body.addEventListener("keydown", (e) => {
+  // ignore if the focus is in Chat
+  if (pushedToTalk || ["input", "textarea"].includes(e.target?.type)) {
+    return;
+  }
+  // ensure total combination of pressed keys is Shift+Space
+  if (e.code === "Space" && e.shiftKey && !e.altKey && !e.ctrlKey && !e.metaKey) {
+    // ensure mic is disabled
+    if (getStreamControlButton(" + d", true) || getStreamControlButton("+d", true)) {
+      pushedToTalk = true;
+      e.preventDefault();
+      toggleAudio();
+    }
+  }
+});
+
+document.body.addEventListener("keyup", (e) => {
+  // ignore if the focus is in Chat
+  if (!pushedToTalk || ["input", "textarea"].includes(e.target?.type)) {
+    return;
+  }
+  // when in push-to-talk and either Shift or Space is released
+  if (pushedToTalk && (e.code === "Space" || e.shiftKey)) {
+    pushedToTalk = false;
+    e.preventDefault();
+    toggleAudio();
+  }
+});
 
 //
 // isActiveMeetTab verifies that the tab with URL https://meet.google.com/[meeting-id] displays active meeting screen and not (re)join screen
